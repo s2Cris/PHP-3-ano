@@ -2,4 +2,4 @@
     <h3>Listar categorias</h3>
 </div>
 
-<a href="?p=categoria/add" title="Add Categoria">+ Categoria</a>
+<a href="?p=categorias/add" title="Add Categoria">+ Categoria</a>
