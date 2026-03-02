@@ -2,4 +2,4 @@
     <h3>Adicionar Categoria</h3>
 </div>
 
-<a href="?p=categoria/list" title="Listar Categorias">Voltar</a>
+<a href="?p=categorias/list" title="Listar Categorias">Voltar</a>
