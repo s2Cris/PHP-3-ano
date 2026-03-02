@@ -15,16 +15,34 @@
         <div class="alert alert-primary" role="alert">
 
             <?php
-            $pagina = filter_input(INPUT_GET, 'p');
+
+            // Captura e sanitiza o parâmetro
+            $pagina = filter_input(INPUT_GET, 'p', FILTER_SANITIZE_SPECIAL_CHARS);
+            // Define páginas permitidas (lista branca)
+            
+            $paginasPermitidas = [
+                'index' => 'home.php',
+                'home' => 'home.php',
+                'sobre' => 'sobre.php',
+                'contato' => 'contato.php',
+                'produtos' => 'produtos.php'
+            ];
+
+            // Página padrão
             if (empty($pagina)) {
-                include_once 'home.php';
-            } else {
-                if(file_exists($pagina . '.php')){
-                   include_once $pagina . '.php'; 
-                } else { 
-                    echo "Erro 404 - Página não encontrada!";
+                $pagina = 'index';
                 }
-                
+
+            // Verifica se está na lista branca
+            if (array_key_exists($pagina, $paginasPermitidas)) {
+                include_once $paginasPermitidas[$pagina];
+            } else {
+                http_response_code(404);
+                ?>
+                <div class="alert alert-danger" role="alert">
+                    Erro 404 - Página não encontrada!
+                </div>
+                <?php
             }
 
             ?>
