@@ -1,0 +1,120 @@
+create table cliente(
+    id int auto_increment primary key,
+    nome varchar(100) not null,
+    email text not null
+);
+
+create table fornecedor(
+    id int auto_increment primary key,
+    nome varchar(100) not null,
+    cidade text not null
+);
+
+--------------------------------------------------------
+
+DELIMITER $$
+
+CREATE PROCEDURE salvar_categoria(
+    IN var_id INT,
+    IN var_nome VARCHAR(100),
+    IN var_info TEXT
+)
+BEGIN
+    IF EXISTS (SELECT id FROM categoria WHERE id = var_id) THEN
+    
+        UPDATE categoria
+        SET nome = var_nome,
+            informacoes = var_info
+        WHERE id = var_id;
+        
+    ELSE
+    
+        INSERT INTO categoria (nome, informacoes)
+        VALUES (var_nome, var_info);
+        
+    END IF;
+END$$
+
+DELIMITER ;
+
+----------------------------------------------------------------
+
+DELIMITER $$
+
+CREATE PROCEDURE salvar_cliente(
+    IN var_id INT,
+    IN var_nome VARCHAR(100),
+    IN var_email TEXT
+)
+BEGIN
+    IF EXISTS (SELECT id FROM cliente WHERE id = var_id) THEN
+    
+        UPDATE cliente
+        SET nome = var_nome,
+            email = var_email
+        WHERE id = var_id;
+        
+    ELSE
+    
+        INSERT INTO cliente (nome, email)
+        VALUES (var_nome, var_email);
+        
+    END IF;
+END$$
+
+DELIMITER ;
+
+----------------------------------------------------------------------
+
+DELIMITER $$
+
+CREATE PROCEDURE salvar_fornecedor(
+    IN var_id INT,
+    IN var_nome VARCHAR(100),
+    IN var_cidade TEXT
+)
+
+BEGIN
+    IF EXISTS (SELECT id FROM fornecedor WHERE id = var_id) THEN
+    
+        UPDATE fornecedor
+        SET nome = var_nome,
+            cidade = var_cidade
+        WHERE id = var_id;
+        
+    ELSE
+    
+        INSERT INTO fornecedor (nome, cidade)
+        VALUES (var_nome, var_cidade);
+        
+    END IF;
+END$$
+
+DELIMITER ;
+
+------------------------------------------------------------------------
+
+Inserts
+
+call salvar_cliente (null, 'Virgínia', 'virginiafonsi@yahoo.com')
+
+call salvar_cliente (null, 'Ana', 'castelo@gmail.com')
+
+
+call salvar_fornecedor (null, 'Felipe', 'felipezé@gmail.com')
+
+call salvar_fornecedor (null, 'Vinícios', 'juniorvini@gmail.com')
+
+-----------------------------------------------------------------------
+
+Updates
+
+call salvar_cliente (1, 'Marina', 'marinasena@gmail.com')
+
+call salvar_cliente (2, 'Juliano', 'flossjuly@gmail.com')
+
+
+call salvar_fornecedor (1, 'Ana', 'anapaula@gmail.com')
+
+call salvar_fornecedor (2, 'Milena', 'milenatia@gmail.com')
+
