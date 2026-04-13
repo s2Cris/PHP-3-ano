@@ -9,6 +9,7 @@ class Conn extends PDO
     private $senha = "";
     private $db = "bd_backend";
 
+    
     public function __construct()
     {
         parent::__construct("mysql:host=$this->host;dbname=$this->db", "$this->usuario", "$this->senha");

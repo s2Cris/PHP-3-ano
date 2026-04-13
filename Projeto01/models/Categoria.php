@@ -34,6 +34,7 @@ class Categoria {
         return $this->inforcacoes;
     }
 
+    
     public function setInformacoes($informacoes): mixed
     {
         $this->informacoes = $informacoes;
