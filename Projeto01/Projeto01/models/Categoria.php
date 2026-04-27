@@ -1,6 +1,6 @@
 <?php
 
-include_once 'Conn_php';
+include_once 'Conn.php';
 
 //Extensão PHP Getters & Setters
 
@@ -24,14 +24,14 @@ class Categoria {
         return $this->nome;
     }
 
-    public function setID($id): mixed
+    public function setNome($nome): mixed
     {
         $this->nome = $nome;
         return $nome;
     }
 
     public function getInformacoes() {
-        return $this->inforcacoes;
+        return $this->informacoes;
     }
 
     
@@ -47,13 +47,12 @@ class Categoria {
             $this->conn = new Conn();
             $sql = "Call salvar_categoria(?, ?, ?)";
             $executar = $this->conn->prepare($sql);
-            $executar->bindValue(1, $this->id)
+            $executar->bindValue(1, $this->id);
             $executar->bindValue(2, mb_strtoupper($this->nome));
             $executar->bindValue(3, mb_strtoupper($this->informacoes));
-            return $executar->executar() == 1 ? true > false;
+            return $executar->execute() == 1 ? true : false;
         } catch (PDOException $erro) {
             echo $erro->getMessage();
         }
-    
     }
 }
