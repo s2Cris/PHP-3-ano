@@ -4,10 +4,10 @@ include_once 'Conn.php';
 
 //Extensão PHP Getters & Setters
 
-class Categoria {
+class Cliente {
     private $id;
     private $nome;
-    private $informacoes;
+    private $email;
     private $conn;
 
     public function getID(): mixed {
@@ -30,43 +30,29 @@ class Categoria {
         return $nome;
     }
 
-    public function getInformacoes() {
-        return $this->informacoes;
+    public function getEmail() {
+        return $this->email;
     }
 
     
-    public function setInformacoes($informacoes): mixed
+    public function setEmail($email): mixed
     {
-        $this->informacoes = $informacoes;
-        return $informacoes;
+        $this->email = $email;
+        return $email;
     }
 
     public function salvar() 
     {
         try{
             $this->conn = new Conn();
-            $sql = "Call salvar_categoria(?, ?, ?)";
+            $sql = "Call salvar_cliente(?, ?, ?)";
             $executar = $this->conn->prepare($sql);
             $executar->bindValue(1, $this->id);
             $executar->bindValue(2, mb_strtoupper($this->nome));
-            $executar->bindValue(3, mb_strtoupper($this->informacoes));
+            $executar->bindValue(3, mb_strtoupper($this->email));
             return $executar->execute() == 1 ? true : false;
         } catch (PDOException $erro) {
             echo $erro->getMessage();
         }
     }
-
-     public function listar($var_id)
-    {
-        try {
-            $this->conn = new Conn();
-            $sql = "CALL listar_categoria(?)";
-            $executar = $this->conn->prepare($sql);
-            $executar->bindValue(1, $var_id);
-            return $executar->execute() == 1 ? $executar->fetchAll() : false;
-        } catch (PDOException $erro) {
-            echo $erro->getMessage();
-        }
-    }
-    
 }

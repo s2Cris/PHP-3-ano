@@ -21,17 +21,14 @@
             <div class="col-sm-10">
                 <textarea name="txtinformacoes" id="txtinformacoes" rows="3" placeholder="Informações aqui" class="form-control"></textarea>
             </div>
-        
+        </div>
 
-        <div class="form-group row">
+        <div class="form-group row mt-3">
             <div class="col-sm-10">
-                <input type="submit"
-                    class="btn btn-primary"
-                    name="btnsalvar"
-                    value="Cadastrar">
+                <input type="submit" class="btn btn-primary mr-2" name="btnsalvar" value="Cadastrar">
             </div>
             <!-- faltou um link aqui-->
-            <a href="?p=categorias" class="btn btn-danger">Cancelar</a>
+            <a href="?p=categorias" class="btn btn-danger col-form-control">Cancelar</a>
         </div>
     </form>
 </div> 
