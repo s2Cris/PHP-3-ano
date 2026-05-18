@@ -18,10 +18,7 @@
                     </tr>
                 </thead>
                 <tbody>
-<<<<<<< HEAD
-=======
-
->>>>>>> 1e724499895853596c8260a072c2595e9e424e65
+                    
                     <?php
                     include_once '../models/Categoria.php';
                     $cat = new Categoria();
