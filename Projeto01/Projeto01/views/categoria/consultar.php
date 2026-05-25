@@ -13,12 +13,12 @@
                     <tr>
                         <th>ID</th>
                         <th>Nome</th>
-                        <th>UF</th>
+                        <th>Informações</th>
                         <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody>
-
+                    
                     <?php
                     include_once '../models/Categoria.php';
                     $cat = new Categoria();

@@ -57,7 +57,7 @@ class Categoria {
         }
     }
 
-     public function listar($var_id)
+    public function listar($var_id)
     {
         try {
             $this->conn = new Conn();
@@ -70,6 +70,7 @@ class Categoria {
         }
     }
 
+<<<<<<< HEAD
     public function excluir()
     {
         try{
@@ -82,4 +83,6 @@ class Categoria {
             echo $erro->getMessage();
         }
     }
+=======
+>>>>>>> 536d3753ca2b5ba6cd9c048c4158eb91ca64ec72
 }
