@@ -70,19 +70,16 @@ class Categoria {
         }
     }
 
-<<<<<<< HEAD
     public function excluir()
     {
         try{
             $this->conn = new Conn();
             $sql = "DELETE FROM {$this->tabela} WHERE id= ?";
-            $executar = $this->conn->prepare($sql);
+            $executar = $this->conn->prepare($sql); 
             $executar->bindValue(1,$this->id);
             return $executar->execute() == 1 ? true : false;
         } catch (PDOException $erro){
             echo $erro->getMessage();
         }
     }
-=======
->>>>>>> 536d3753ca2b5ba6cd9c048c4158eb91ca64ec72
 }
