@@ -13,11 +13,28 @@
                     <tr>
                         <th>ID</th>
                         <th>Nome</th>
-                        <th>UF</th>
+                        <th>Email</th>
                         <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody>
+
+                    <?php
+                    include_once '../models/Cliente.php';
+                    $cli = new Cliente();
+                    $dados = $cli->listar(null);
+                    foreach ($dados as $mostrar) {
+                    ?>
+                    <tr>
+                        <td><?= $mostrar['id'] ?></td>
+                        <td><?= $mostrar['nome'] ?></td>
+                        <td><?= $mostrar['email'] ?></td>
+                        <td>Excluir e Editar</td>
+                    </tr>
+                    <?php
+                    }
+                    ?>
+
                 </tbody>
             </table>
         </div>

@@ -43,6 +43,19 @@ END$$
 
 DELIMITER ;
 
+------------------------------
+
+DELIMITER $$
+CREATE PROCEDURE listar_categoria (IN var_id INT)
+BEGIN
+	IF var_id IS NULL THEN
+    	SELECT * FROM categoria;
+    ELSE
+    	SELECT * FROM categoria WHERE id = var_id;
+    END IF;
+END$$
+DELIMITER ;
+
 ----------------------------------------------------------------
 
 DELIMITER $$
@@ -68,6 +81,19 @@ BEGIN
     END IF;
 END$$
 
+DELIMITER ;
+
+------------------------------
+
+DELIMITER $$
+CREATE PROCEDURE listar_cliente (IN var_id INT)
+BEGIN
+	IF var_id IS NULL THEN
+    	SELECT * FROM cliente;
+    ELSE
+    	SELECT * FROM cliente WHERE id = var_id;
+    END IF;
+END$$
 DELIMITER ;
 
 ----------------------------------------------------------------------
@@ -96,6 +122,19 @@ BEGIN
     END IF;
 END$$
 
+DELIMITER ;
+
+------------------------------
+
+DELIMITER $$
+CREATE PROCEDURE listar_fornecedor (IN var_id INT)
+BEGIN
+	IF var_id IS NULL THEN
+    	SELECT * FROM fornecedor;
+    ELSE
+    	SELECT * FROM fornecedor WHERE id = var_id;
+    END IF;
+END$$
 DELIMITER ;
 
 ------------------------------------------------------------------------
