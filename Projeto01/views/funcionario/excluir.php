@@ -2,11 +2,11 @@
     $id = filter_input(INPUT_GET, 'id');
 
     if ($id) {
-        include_once '../models/Cliente.php';
-        $cli = new Cliente();
-        $cli->setId($id);
+        include_once '../models/Funcionario.php';
+        $func = new Funcionario();
+        $func->setId($id);
 
-        if ($cli->excluir()) {
+        if ($func->excluir()) {
     ?>
             <div class="alert alert-primary" role="alert">
                 Excluído com sucesso

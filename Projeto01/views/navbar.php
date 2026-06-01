@@ -5,6 +5,7 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
+
             <li class="nav-item">
                 <a class="nav-link" href="?p=categorias">
                     <i class="bi bi-list-task"></i> Consultar Categorias
@@ -19,8 +20,12 @@
                     <i class="bi bi-list-task"></i> Consultar Fornecedores
                 </a>
             </li>
-                
+            <li class="nav-item">
+                <a class="nav-link" href="?p=funcionario">
+                    <i class="bi bi-list-task"></i> Consultar Funcionários
+                </a>
             </li>
+            
         </ul>
     </div>
 </nav>

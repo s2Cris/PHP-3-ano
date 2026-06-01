@@ -29,4 +29,5 @@ class Conn extends PDO
         // Se já existe instancia na memória eu retorno ela
         return self::$instancia;
     }
+    
 }

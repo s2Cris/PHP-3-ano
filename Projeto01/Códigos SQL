@@ -16,6 +16,13 @@ create table categoria(
     informacoes text not null
 );
 
+create table funcionario(
+    id int auto_increment primary key,
+    nome varchar(100) not null,
+    email text not null,
+    cargo text not null
+);
+
 --------------------------------------------------------
 
 DELIMITER $$
@@ -133,6 +140,48 @@ BEGIN
     	SELECT * FROM fornecedor;
     ELSE
     	SELECT * FROM fornecedor WHERE id = var_id;
+    END IF;
+END$$
+DELIMITER ;
+
+------------------------------------------------------------------------
+
+DELIMITER $$
+
+CREATE PROCEDURE salvar_funcionario(
+    IN var_id INT,
+    IN var_nome VARCHAR(100),
+    IN var_email TEXT,
+    IN var_cargo TEXT
+)
+BEGIN
+    IF EXISTS (SELECT id FROM funcionario WHERE id = var_id) THEN
+    
+        UPDATE funcionario
+        SET nome = var_nome,
+            email = var_email,
+            cargo = var_cargo
+        WHERE id = var_id;
+        
+    ELSE
+    
+        INSERT INTO funcionario (nome, email, cargo)
+        VALUES (var_nome, var_email, var_cargo);
+        
+    END IF;
+END$$
+
+DELIMITER ;
+
+------------------------------------------------------------------------
+
+DELIMITER $$
+CREATE PROCEDURE listar_funcionario (IN var_id INT)
+BEGIN
+	IF var_id IS NULL THEN
+    	SELECT * FROM funcionario;
+    ELSE
+    	SELECT * FROM funcionario WHERE id = var_id;
     END IF;
 END$$
 DELIMITER ;

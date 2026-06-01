@@ -4,13 +4,14 @@ include_once 'Conn.php';
 
 //Extensão PHP Getters & Setters
 
-class Fornecedor {
+class Funcionario {
     private $id;
     private $nome;
-    private $cidade;
+    private $email;
+    private $cargo;
     private $conn;
-    private $tabela = "fornecedor";
-    
+    private $tabela = "funcionario";
+
     public function getID(): mixed {
         return $this->id;
     }
@@ -31,26 +32,36 @@ class Fornecedor {
         return $nome;
     }
 
-    public function getCidade() {
-        return $this->cidade;
+    public function getEmail() {
+        return $this->email;
     }
 
-    
-    public function setCidade($cidade): mixed
+    public function setEmail($email): mixed
     {
-        $this->cidade = $cidade;
-        return $cidade;
+        $this->email = $email;
+        return $email;
+    }
+
+    public function getCargo() {
+        return $this->cargo;
+    }
+
+    public function setCargo($cargo): mixed
+    {
+        $this->cargo = $cargo;
+        return $cargo;
     }
 
     public function salvar() 
     {
         try{
             $this->conn = new Conn();
-            $sql = "Call salvar_fornecedor(?, ?, ?)";
+            $sql = "Call salvar_funcionario(?, ?, ?, ?)";
             $executar = $this->conn->prepare($sql);
             $executar->bindValue(1, $this->id);
             $executar->bindValue(2, mb_strtoupper($this->nome));
-            $executar->bindValue(3, mb_strtoupper($this->cidade));
+            $executar->bindValue(3, mb_strtoupper($this->email));
+            $executar->bindValue(4, mb_strtoupper($this->cargo));
             return $executar->execute() == 1 ? true : false;
         } catch (PDOException $erro) {
             echo $erro->getMessage();
@@ -61,7 +72,7 @@ class Fornecedor {
     {
         try {
             $this->conn = new Conn();
-            $sql = "CALL listar_fornecedor(?)";
+            $sql = "CALL listar_funcionario(?)";
             $executar = $this->conn->prepare($sql);
             $executar->bindValue(1, $var_id);
             return $executar->execute() == 1 ? $executar->fetchAll() : false;
