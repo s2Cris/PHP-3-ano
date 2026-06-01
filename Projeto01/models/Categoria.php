@@ -82,5 +82,8 @@ class Categoria {
             echo $erro->getMessage();
         }
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 1cc02b6b8f24ccb38eb4993fef0b1dfceb3b3348
 }

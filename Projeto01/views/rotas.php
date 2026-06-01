@@ -5,6 +5,10 @@
         'categorias' => 'categoria/consultar.php',
         'add/categoria' => 'categoria/salvar.php',
         'excluir/categoria' => 'categoria/excluir.php',
+<<<<<<< HEAD
+=======
+        //'editar/categoria' => 'categoria/editar.php'
+>>>>>>> 1cc02b6b8f24ccb38eb4993fef0b1dfceb3b3348
         'cliente' => 'cliente/consultar.php',
         'add/cliente' => 'cliente/salvar.php',
         'excluir/cliente' => 'cliente/excluir.php',
