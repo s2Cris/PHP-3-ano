@@ -83,4 +83,76 @@ class Fornecedor {
         }
     }
 
+    // métodos sem procedure
+
+    public function excluir()
+    {
+        try{
+            $this->conn = new Conn();
+            $sql = "DELETE FROM {$this->tabela} WHERE id= ?";
+            $executar = $this->conn->prepare($sql); 
+            $executar->bindValue(1,$this->id);
+            return $executar->execute() == 1 ? true : false;
+        } catch (PDOException $erro){
+            echo $erro->getMessage();
+        }
+    }
+
+    public function inserir()
+    {
+        try {
+            $this->conn = new Conn();
+            $sql = "INSERT INTO fornecedor VALUES (?, ?, ?)";
+            $executar = $this->conn->prepare($sql);
+            $executar->bindValue(1, $this->id);
+            $executar->bindValue(2, mb_strtoupper($this->nome));
+            $executar->bindValue(3, mb_strtoupper($this->cidade));
+            return $executar->execute() == 1 ? true : false;
+        } catch (PDOException $erro){
+            echo $erro->getMessage();
+        }
+    }
+
+    public function alterar()
+    {
+        try {
+            $this->conn = new Conn();
+            $sql = "UPDATE fornecedor 
+                    SET nome = ?, cidade = ?,
+                    WHERE id = ?";
+            $executar = $this->conn->prepare($sql);
+            $executar->bindValue(1, mb_strtoupper($this->nome));
+            $executar->bindValue(2, mb_strtoupper($this->cidade));
+            $executar->bindValue(3, $this->id); 
+            return $executar->execute() == 1 ? true :false;
+        } catch (PDOException $erro){
+            echo $erro->getMessage();
+        }
+    }
+
+    public function listarSemProcedure()
+    {
+        try {
+            $this->conn = new Conn();
+            $sql = "SELECT * FROM {$this->tabela} ORDER BY nome";
+            $executar = $this->conn->prepare($sql); 
+            return $executar->execute() == 1 ? true :false;
+        } catch (PDOException $erro){
+            echo $erro->getMessage();
+        }
+    }
+
+    public function consultarPorID()
+    {
+        try {
+            $this->conn = new Conn();
+            $sql = "SELECT * FROM {$this->tabela} WHERE id = ?";
+            $executar = $this->conn->prepare($sql);
+            $executar->bindValue(1, $this->id); 
+            return $executar->execute() == 1 ? true :false;
+        } catch (PDOException $erro){
+            echo $erro->getMessage();
+        }
+    }
+
 }
