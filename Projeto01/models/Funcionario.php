@@ -52,6 +52,7 @@ class Funcionario {
         return $cargo;
     }
 
+    /*
     public function salvar() 
     {
         try{
@@ -80,6 +81,7 @@ class Funcionario {
             echo $erro->getMessage();
         }
     }
+    */
     
     // métodos sem procedure
 

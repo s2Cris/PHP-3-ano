@@ -42,6 +42,7 @@ class Cliente {
         return $email;
     }
 
+    /*
     public function salvar() 
     {
         try{
@@ -69,8 +70,7 @@ class Cliente {
             echo $erro->getMessage();
         }
     }
-
-
+    */
 
     // métodos sem procedure
 

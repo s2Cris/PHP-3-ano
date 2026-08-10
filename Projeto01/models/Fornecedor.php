@@ -42,6 +42,7 @@ class Fornecedor {
         return $cidade;
     }
 
+    /*
     public function salvar() 
     {
         try{
@@ -82,6 +83,7 @@ class Fornecedor {
             echo $erro->getMessage();
         }
     }
+    */
 
     // métodos sem procedure
 

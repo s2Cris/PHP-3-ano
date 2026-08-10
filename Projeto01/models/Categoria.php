@@ -42,7 +42,7 @@ class Categoria {
         return $informacoes;
     }
 
-    public function salvar() 
+    /*public function salvar() 
     {
         try{
             $this->conn = new Conn();
@@ -69,6 +69,7 @@ class Categoria {
             echo $erro->getMessage();
         }
     }
+    */
     
     // métodos sem procedure
     public function excluir()
@@ -141,11 +142,14 @@ class Categoria {
         }
     }
 
+    // outra opção de CRUD
+
+    /*
     public function crudPhp($opcao)
     {
         try {
 
-            $this->con = new Conn();
+            $this->conn = new Conn();
 
             switch ($opcao) {
 
@@ -158,21 +162,21 @@ class Categoria {
                     $executar = $this->con->prepare($sql);
 
                     $executar->bindValue(1, mb_strtoupper($this->nome));
-                    $executar->bindValue(2, mb_strtoupper($this->uf));
+                    $executar->bindValue(2, mb_strtoupper($this->informacoes));
 
                     break;
 
                 case 'A':
 
-                    $sql = "UPDATE {$this->table}
+                    $sql = "UPDATE {$this->tabela}
                            SET nome = ?,
                                informacoes = ?
                          WHERE id = ?";
 
-                    $executar = $this->con->prepare($sql);
+                    $executar = $this->conn->prepare($sql);
 
                     $executar->bindValue(1, mb_strtoupper($this->nome));
-                    $executar->bindValue(2, mb_strtoupper($this->uf));
+                    $executar->bindValue(2, mb_strtoupper($this->informacoes));
                     $executar->bindValue(3, $this->id);
 
                     break;
@@ -182,7 +186,7 @@ class Categoria {
                     $sql = "DELETE FROM {$this->tabela}
                         WHERE id = ?";
 
-                    $executar = $this->con->prepare($sql);
+                    $executar = $this->conn->prepare($sql);
 
                     $executar->bindValue(1, $this->id);
 
@@ -198,5 +202,5 @@ class Categoria {
             echo $exc->getMessage();
         }
     }
-
+    */
 }
