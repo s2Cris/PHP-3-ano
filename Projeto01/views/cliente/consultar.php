@@ -22,8 +22,9 @@
                     <?php
                     include_once '../models/Cliente.php';
                     $cli = new Cliente();
-                    $dados = $cli->listar(null);
-                    foreach ($dados as $mostrar) {
+                    $dados = $cli->listarSemProcedure();
+                    if ($dados) {
+                        foreach ($dados as $mostrar) {
                     ?>
                     <tr>
                         <td><?= $mostrar['id'] ?></td>
@@ -39,6 +40,7 @@
                         </td>
                     </tr>
                     <?php
+                        }
                     }
                     ?>
 

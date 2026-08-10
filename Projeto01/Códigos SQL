@@ -212,3 +212,54 @@ call salvar_fornecedor (1, 'Ana', 'anapaula@gmail.com')
 
 call salvar_fornecedor (2, 'Milena', 'milenatia@gmail.com')
 
+----------------------------------------------------------------------
+
+CREATE DATABASE IF NOT EXISTS bd_backend;
+
+USE bd_backend;
+
+-- =========================================
+-- TABELA: CATEGORIA
+-- =========================================
+
+CREATE TABLE IF NOT EXISTS categoria (
+    id INT NOT NULL AUTO_INCREMENT,
+    nome VARCHAR(100) NOT NULL,
+    informacoes VARCHAR(255),
+    PRIMARY KEY (id)
+);
+
+-- =========================================
+-- TABELA: CLIENTE
+-- =========================================
+
+CREATE TABLE IF NOT EXISTS cliente (
+    id INT NOT NULL AUTO_INCREMENT,
+    nome VARCHAR(100) NOT NULL,
+    email VARCHAR(150) NOT NULL,
+    PRIMARY KEY (id)
+);
+
+-- =========================================
+-- TABELA: FORNECEDOR
+-- =========================================
+
+CREATE TABLE IF NOT EXISTS fornecedor (
+    id INT NOT NULL AUTO_INCREMENT,
+    nome VARCHAR(100) NOT NULL,
+    cidade VARCHAR(100) NOT NULL,
+    PRIMARY KEY (id)
+);
+
+-- =========================================
+-- TABELA: FUNCIONARIO
+-- =========================================
+
+CREATE TABLE IF NOT EXISTS funcionario (
+    id INT NOT NULL AUTO_INCREMENT,
+    nome VARCHAR(100) NOT NULL,
+    email VARCHAR(150) NOT NULL,
+    cargo VARCHAR(100) NOT NULL,
+    PRIMARY KEY (id)
+);
+

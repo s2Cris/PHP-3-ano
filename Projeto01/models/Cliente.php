@@ -21,25 +21,24 @@ class Cliente {
         return $this;
     }
 
-    public function getNome($nome): mixed {
+    public function getNome(): mixed {
         return $this->nome;
     }
 
-    public function setNome($nome): mixed
+    public function setNome($nome): static
     {
         $this->nome = $nome;
-        return $nome;
+        return $this;
     }
 
-    public function getEmail() {
+    public function getEmail(): mixed {
         return $this->email;
     }
 
-    
-    public function setEmail($email): mixed
+    public function setEmail($email): static
     {
         $this->email = $email;
-        return $email;
+        return $this;
     }
 
     /*
@@ -72,6 +71,11 @@ class Cliente {
     }
     */
 
+    public function salvar()
+    {
+        return $this->inserir();
+    }
+
     // métodos sem procedure
 
     public function excluir()
@@ -91,14 +95,15 @@ class Cliente {
     {
         try {
             $this->conn = new Conn();
-            $sql = "INSERT INTO cliente VALUES (?, ?, ?)";
+            $sql = "INSERT INTO {$this->tabela} (id, nome, email) VALUES (?, ?, ?)";
             $executar = $this->conn->prepare($sql);
             $executar->bindValue(1, $this->id);
             $executar->bindValue(2, mb_strtoupper($this->nome));
             $executar->bindValue(3, mb_strtoupper($this->email));
-            return $executar->execute() == 1 ? true : false;
+            return $executar->execute();
         } catch (PDOException $erro){
             echo $erro->getMessage();
+            return false;
         }
     }
 
@@ -106,16 +111,17 @@ class Cliente {
     {
         try {
             $this->conn = new Conn();
-            $sql = "UPDATE cliente 
-                    SET nome = ?, email = ?,
+            $sql = "UPDATE {$this->tabela} 
+                    SET nome = ?, email = ?
                     WHERE id = ?";
             $executar = $this->conn->prepare($sql);
             $executar->bindValue(1, mb_strtoupper($this->nome));
             $executar->bindValue(2, mb_strtoupper($this->email));
             $executar->bindValue(3, $this->id); 
-            return $executar->execute() == 1 ? true :false;
+            return $executar->execute();
         } catch (PDOException $erro){
             echo $erro->getMessage();
+            return false;
         }
     }
 
@@ -125,9 +131,11 @@ class Cliente {
             $this->conn = new Conn();
             $sql = "SELECT * FROM {$this->tabela} ORDER BY nome";
             $executar = $this->conn->prepare($sql); 
-            return $executar->execute() == 1 ? true :false;
+            $executar->execute();
+            return $executar->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $erro){
             echo $erro->getMessage();
+            return false;
         }
     }
 
@@ -138,9 +146,11 @@ class Cliente {
             $sql = "SELECT * FROM {$this->tabela} WHERE id = ?";
             $executar = $this->conn->prepare($sql);
             $executar->bindValue(1, $this->id); 
-            return $executar->execute() == 1 ? true :false;
+            $executar->execute();
+            return $executar->fetch(PDO::FETCH_ASSOC);
         } catch (PDOException $erro){
             echo $erro->getMessage();
+            return false;
         }
     }
     

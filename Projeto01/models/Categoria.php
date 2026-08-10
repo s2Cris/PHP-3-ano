@@ -21,28 +21,29 @@ class Categoria {
         return $this;
     }
 
-    public function getNome($nome): mixed {
+    public function getNome(): mixed {
         return $this->nome;
     }
 
-    public function setNome($nome): mixed
+    public function setNome($nome): static
     {
-        $this->nome = $nome;
-        return $nome;
+        $this->nome = $nome;    
+        return $this;
     }
 
-    public function getInformacoes() {
+    public function getInformacoes(): mixed
+    {
         return $this->informacoes;
     }
 
     
-    public function setInformacoes($informacoes): mixed
+    public function setInformacoes($informacoes): static
     {
         $this->informacoes = $informacoes;
-        return $informacoes;
+        return $this;
     }
 
-    /*public function salvar() 
+    public function salvar() 
     {
         try{
             $this->conn = new Conn();
@@ -69,9 +70,9 @@ class Categoria {
             echo $erro->getMessage();
         }
     }
-    */
     
-    // métodos sem procedure
+    // métodos sem procedure    
+
     public function excluir()
     {
         try{
@@ -79,9 +80,10 @@ class Categoria {
             $sql = "DELETE FROM {$this->tabela} WHERE id= ?";
             $executar = $this->conn->prepare($sql); 
             $executar->bindValue(1,$this->id);
-            return $executar->execute() == 1 ? true : false;
+            return $executar->execute();
         } catch (PDOException $erro){
             echo $erro->getMessage();
+            return false;
         }
     }
     
@@ -89,14 +91,17 @@ class Categoria {
     {
         try {
             $this->conn = new Conn();
-            $sql = "INSERT INTO categoria VALUES (?, ?, ?)";
+            $sql = "INSERT INTO {$this->tabela}
+            (id, nome, informacoes) 
+            VALUES (?, ?, ?)";
             $executar = $this->conn->prepare($sql);
             $executar->bindValue(1, $this->id);
             $executar->bindValue(2, mb_strtoupper($this->nome));
             $executar->bindValue(3, mb_strtoupper($this->informacoes));
-            return $executar->execute() == 1 ? true : false;
+            return $executar->execute() ;
         } catch (PDOException $erro){
             echo $erro->getMessage();
+            return false;
         }
     }
 
@@ -104,16 +109,17 @@ class Categoria {
     {
         try {
             $this->conn = new Conn();
-            $sql = "UPDATE categoria 
+            $sql = "UPDATE {$this->tabela} 
                     SET nome = ?, informacoes = ?,
                     WHERE id = ?";
             $executar = $this->conn->prepare($sql);
             $executar->bindValue(1, mb_strtoupper($this->nome));
             $executar->bindValue(2, mb_strtoupper($this->informacoes));
             $executar->bindValue(3, $this->id); 
-            return $executar->execute() == 1 ? true :false;
+            return $executar->execute() ;
         } catch (PDOException $erro){
             echo $erro->getMessage();
+            return false;
         }
     }
 
@@ -123,9 +129,11 @@ class Categoria {
             $this->conn = new Conn();
             $sql = "SELECT * FROM {$this->tabela} ORDER BY nome";
             $executar = $this->conn->prepare($sql); 
-            return $executar->execute() == 1 ? true :false;
+            $executar->execute();
+            return $executar->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $erro){
             echo $erro->getMessage();
+            return false;
         }
     }
 
@@ -134,17 +142,17 @@ class Categoria {
         try {
             $this->conn = new Conn();
             $sql = "SELECT * FROM {$this->tabela} WHERE id = ?";
-            $executar = $this->conn->prepare($sql);
+            $executar = $this->conn->prepare($sql); 
             $executar->bindValue(1, $this->id); 
-            return $executar->execute() == 1 ? true :false;
+            $executar->execute();
+            return $executar->fetch(PDO::FETCH_ASSOC);
         } catch (PDOException $erro){
             echo $erro->getMessage();
+            return false;
         }
     }
 
-    // outra opção de CRUD
-
-    /*
+    
     public function crudPhp($opcao)
     {
         try {
@@ -156,13 +164,14 @@ class Categoria {
                 case 'I':
 
                     $sql = "INSERT INTO {$this->tabela}
-                        (nome, informacoes)
-                        VALUES (?, ?)";
+                        (id, nome, informacoes)
+                        VALUES (?, ?, ?)";
 
-                    $executar = $this->con->prepare($sql);
-
-                    $executar->bindValue(1, mb_strtoupper($this->nome));
-                    $executar->bindValue(2, mb_strtoupper($this->informacoes));
+                    $executar = $this->conn->prepare($sql);
+                    
+                    $executar->bindValue(1, $this->id);
+                    $executar->bindValue(2, mb_strtoupper($this->nome));
+                    $executar->bindValue(3, mb_strtoupper($this->informacoes));
 
                     break;
 
@@ -187,7 +196,6 @@ class Categoria {
                         WHERE id = ?";
 
                     $executar = $this->conn->prepare($sql);
-
                     $executar->bindValue(1, $this->id);
 
                     break;
@@ -196,11 +204,12 @@ class Categoria {
                     return false;
             }
 
-            return $executar->execute() == 1 ? true : false;
-        } catch (PDOException $exc) {
+            return $executar->execute();
 
-            echo $exc->getMessage();
+        } catch (PDOException $erro) {
+            echo $erro->getMessage();
+            return false;
         }
     }
-    */
+    
 }

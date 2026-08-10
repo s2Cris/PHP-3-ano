@@ -23,8 +23,9 @@
                     <?php
                     include_once '../models/Funcionario.php';
                     $func = new Funcionario();
-                    $dados = $func->listar(null);
-                    foreach ($dados as $mostrar) {
+                    $dados = $func->listarSemProcedure();
+                    if ($dados) {
+                        foreach ($dados as $mostrar) {
                     ?>
                     <tr>
                         <td><?= $mostrar['id'] ?></td>
@@ -41,6 +42,7 @@
                         </td>
                     </tr>
                     <?php
+                        }
                     }
                     ?>
 

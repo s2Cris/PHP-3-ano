@@ -61,11 +61,13 @@ if (filter_input(INPUT_POST, 'btnsalvar')) {
     $func->setCargo($cargo);
 
     //efetivar o insert into
-    if($func->salvar()){
+    if($func->inserir()){
         ?>
             <div class="alert alert-primary mt-3" role="alert">
                 Funcionário - Cadastro efetuado com sucesso.
             </div>
+            <meta http-equiv="refresh"
+              content="0.2;URL=?p=funcionario">
         <?php
     } else {
         ?>

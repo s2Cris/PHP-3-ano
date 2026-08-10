@@ -48,11 +48,13 @@ if (filter_input(INPUT_POST, 'btnsalvar')) {
     $cat->setInformacoes($info);
 
     //efetivar o insert into
-    if($cat->salvar()){
+    if($cat->inserir()){
         ?>
             <div class="alert alert-primary mt-3" role="alert">
                 Categoria - Cadastro efetuado com sucesso.
             </div>
+            <meta http-equiv="refresh"
+              content="0.2;URL=?p=categorias">
         <?php
     } else {
         ?>
@@ -62,3 +64,4 @@ if (filter_input(INPUT_POST, 'btnsalvar')) {
     <?php
     }
 }
+?>

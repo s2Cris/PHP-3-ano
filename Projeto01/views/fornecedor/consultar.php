@@ -22,8 +22,9 @@
                     <?php
                     include_once '../models/Fornecedor.php';
                     $for = new Fornecedor();
-                    $dados = $for->listar(null);
-                    foreach ($dados as $mostrar) {
+                    $dados = $for->listarSemProcedure();
+                    if ($dados) {
+                        foreach ($dados as $mostrar) {
                     ?>
                     <tr>
                         <td><?= $mostrar['id'] ?></td>
@@ -39,6 +40,7 @@
                         </td>
                     </tr>
                     <?php
+                        }
                     }
                     ?>
 
