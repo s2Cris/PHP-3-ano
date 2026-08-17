@@ -21,7 +21,7 @@
                 <tbody>
                     
                     <?php
-                    include_once '../models/Funcionario.php';
+                    include_once '../models/Funcionario_copy.php';
                     $func = new Funcionario();
                     $dados = $func->listarSemProcedure();
                     if ($dados) {

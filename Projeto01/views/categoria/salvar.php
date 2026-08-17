@@ -39,7 +39,8 @@ if (filter_input(INPUT_POST, 'btnsalvar')) {
     $nome = filter_input(INPUT_POST,'txtnome');
     $info = filter_input(INPUT_POST,'txtinformacoes');
 
-    include_once '../models/Categoria.php' ;
+    //acesso à classe (em models)
+    include_once '../models/Categoria_copy.php' ;
     $cat = new Categoria();
 
     //enviando os dados do form aos atributos da classe
@@ -48,6 +49,7 @@ if (filter_input(INPUT_POST, 'btnsalvar')) {
     $cat->setInformacoes($info);
 
     //efetivar o insert into
+    //if ($cat->salvar()) { - com procedure
     if($cat->inserir()){
         ?>
             <div class="alert alert-primary mt-3" role="alert">

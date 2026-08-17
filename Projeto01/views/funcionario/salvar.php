@@ -51,7 +51,7 @@ if (filter_input(INPUT_POST, 'btnsalvar')) {
     $email = filter_input(INPUT_POST,'txtemail');
     $cargo = filter_input(INPUT_POST,'txtcargo');
 
-    include_once '../models/Funcionario.php' ;
+    include_once '../models/Funcionario_copy.php' ;
     $func = new Funcionario();
 
     //enviando os dados do form aos atributos da classe

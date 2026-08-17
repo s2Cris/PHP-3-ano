@@ -20,7 +20,7 @@
                 <tbody>
                     
                     <?php
-                    include_once '../models/Fornecedor.php';
+                    include_once '../models/Fornecedor_copy.php';
                     $for = new Fornecedor();
                     $dados = $for->listarSemProcedure();
                     if ($dados) {

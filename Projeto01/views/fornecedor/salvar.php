@@ -42,7 +42,7 @@ if (filter_input(INPUT_POST, 'btnsalvar')) {
     $nome = filter_input(INPUT_POST,'txtnome');
     $info = filter_input(INPUT_POST,'txtcidade');
 
-    include_once '../models/Fornecedor.php' ;
+    include_once '../models/Fornecedor_copy.php' ;
     $cat = new Fornecedor();
 
     //enviando os dados do form aos atributos da classe

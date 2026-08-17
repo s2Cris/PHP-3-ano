@@ -20,13 +20,12 @@
                 <tbody>
                     
                     <?php
-                    include_once '../models/Categoria.php';
+                    include_once '../models/Categoria_copy.php';
                     $cat = new Categoria();
 
                     // Sem procedure
                     $dados = $cat->listarSemProcedure();
                     if ($dados) {
-                        
                         foreach ($dados as $mostrar) {
                     ?>      
 

@@ -2,7 +2,7 @@
     $id = filter_input(INPUT_GET, 'id');
 
     if ($id) {
-        include_once '../models/Funcionario.php';
+        include_once '../models/Funcionario_copy.php';
         $func = new Funcionario();
         $func->setId($id);
 

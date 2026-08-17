@@ -20,7 +20,7 @@
                 <tbody>
 
                     <?php
-                    include_once '../models/Cliente.php';
+                    include_once '../models/Cliente_copy.php';
                     $cli = new Cliente();
                     $dados = $cli->listarSemProcedure();
                     if ($dados) {

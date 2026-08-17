@@ -39,7 +39,7 @@ if (filter_input(INPUT_POST, 'btnsalvar')) {
     $nome = filter_input(INPUT_POST,'txtnome');
     $email = filter_input(INPUT_POST,'txtemail');
 
-    include_once '../models/Cliente.php' ;
+    include_once '../models/Cliente_copy.php' ;
     $cat = new Cliente();
 
     //enviando os dados do form aos atributos da classe

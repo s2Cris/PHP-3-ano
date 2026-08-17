@@ -2,7 +2,7 @@
     $id = filter_input(INPUT_GET, 'id');
 
     if ($id) {
-        include_once '../models/Fornecedor.php';
+        include_once '../models/Fornecedor_copy.php';
         $forn = new Fornecedor();
         $forn->setId($id);
 
