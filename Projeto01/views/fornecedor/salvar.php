@@ -39,23 +39,25 @@
 <?php
     //verificar se o botão btnsalvar foi acionado
 if (filter_input(INPUT_POST, 'btnsalvar')) {
-    $nome = filter_input(INPUT_POST,'txtnome');
-    $info = filter_input(INPUT_POST,'txtcidade');
 
-    include_once '../models/Fornecedor.php' ;
-    $cat = new Fornecedor();
+    include_once '../controller/FornecedorController.php' ;
+    $for = new FornecedorController();
 
+    /*
     //enviando os dados do form aos atributos da classe
     $cat->setID(NULL);
     $cat->setNome($nome);
     $cat->setCidade($info);
+    */
 
     //efetivar o insert into
-    if($cat->salvar()){
+    if($for->salvar()){
         ?>
             <div class="alert alert-primary mt-3" role="alert">
                 Fornecedor - Cadastro efetuado com sucesso.
             </div>
+            <meta http-equiv="refresh"
+              content="0.2;URL=?p=fornecedor">
         <?php
     } else {
         ?>

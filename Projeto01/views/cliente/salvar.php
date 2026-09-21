@@ -36,23 +36,26 @@
 <?php
     //verificar se o botão btnsalvar foi acionado
 if (filter_input(INPUT_POST, 'btnsalvar')) {
-    $nome = filter_input(INPUT_POST,'txtnome');
-    $email = filter_input(INPUT_POST,'txtemail');
 
-    include_once '../models/Cliente.php' ;
-    $cat = new Cliente();
+    include_once '../controller/ClienteController.php' ;
+    $cat = new ClienteController();
 
+    /*
     //enviando os dados do form aos atributos da classe
     $cat->setID(NULL);
     $cat->setNome($nome);
     $cat->setEmail($email);
+    
 
     //efetivar o insert into
+    */
     if($cat->salvar()){
         ?>
             <div class="alert alert-primary mt-3" role="alert">
                 Cliente - Cadastro efetuado com sucesso.
             </div>
+            <meta http-equiv="refresh"
+              content="0.2;URL=?p=cliente">
         <?php
     } else {
         ?>

@@ -1,160 +1,58 @@
 <?php
 
-include_once 'Conn.php';
+//exige a tipificação dos atributos e métodos
+declare(strict_types=1);
 
-//Extensão PHP Getters & Setters
+class Funcionario
+{
+    //a interrogação indica que pode ser null
+    private ?int $id = null;
+    private string $nome = "";
+    private string $email = "";
+    private string $cargo = "";
 
-class Funcionario {
-    private $id;
-    private $nome;
-    private $email;
-    private $cargo;
-    private $conn;
-    private $tabela = "funcionario";
-
-    public function getID(): mixed {
+    public function getId(): ?int
+    {
         return $this->id;
     }
 
-    public function setID($id): static 
+    public function setId(?int $id): self
     {
         $this->id = $id;
         return $this;
     }
 
-    public function getNome($nome): mixed {
+    public function getNome(): string
+    {
         return $this->nome;
     }
 
-    public function setNome($nome): mixed
+    public function setNome(string $nome): self
     {
-        $this->nome = $nome;
-        return $nome;
+        $this->nome = trim($nome);
+        return $this;
     }
 
-    public function getEmail() {
+    public function getEmail(): string
+    {
         return $this->email;
     }
 
-    public function setEmail($email): mixed
+    public function setEmail(string $email): self
     {
-        $this->email = $email;
-        return $email;
+        $this->email = trim($email);
+        return $this;
     }
 
-    public function getCargo() {
+    public function getCargo(): string
+    {
         return $this->cargo;
     }
 
-    public function setCargo($cargo): mixed
+    public function setCargo(string $cargo): self
     {
-        $this->cargo = $cargo;
-        return $cargo;
-    }
-
-    /*
-    public function salvar() 
-    {
-        try{
-            $this->conn = new Conn();
-            $sql = "Call salvar_funcionario(?, ?, ?, ?)";
-            $executar = $this->conn->prepare($sql);
-            $executar->bindValue(1, $this->id);
-            $executar->bindValue(2, mb_strtoupper($this->nome));
-            $executar->bindValue(3, mb_strtoupper($this->email));
-            $executar->bindValue(4, mb_strtoupper($this->cargo));
-            return $executar->execute() == 1 ? true : false;
-        } catch (PDOException $erro) {
-            echo $erro->getMessage();
-        }
-    }
-
-    public function listar($var_id)
-    {
-        try {
-            $this->conn = new Conn();
-            $sql = "CALL listar_funcionario(?)";
-            $executar = $this->conn->prepare($sql);
-            $executar->bindValue(1, $var_id);
-            return $executar->execute() == 1 ? $executar->fetchAll() : false;
-        } catch (PDOException $erro) {
-            echo $erro->getMessage();
-        }
-    }
-    */
-    
-    // métodos sem procedure
-
-    public function excluir()
-    {
-        try{
-            $this->conn = new Conn();
-            $sql = "DELETE FROM {$this->tabela} WHERE id= ?";
-            $executar = $this->conn->prepare($sql); 
-            $executar->bindValue(1,$this->id);
-            return $executar->execute() == 1 ? true : false;
-        } catch (PDOException $erro){
-            echo $erro->getMessage();
-        }
-    }
-
-    public function inserir()
-    {
-        try {
-            $this->conn = new Conn();
-            $sql = "INSERT INTO funcionario VALUES (?, ?, ?, ?)";
-            $executar = $this->conn->prepare($sql);
-            $executar->bindValue(1, $this->id);
-            $executar->bindValue(2, mb_strtoupper($this->nome));
-            $executar->bindValue(3, mb_strtoupper($this->email));
-            $executar->bindValue(4, mb_strtoupper($this->cargo));
-            return $executar->execute() == 1 ? true : false;
-        } catch (PDOException $erro){
-            echo $erro->getMessage();
-        }
-    }
-
-    public function alterar()
-    {
-        try {
-            $this->conn = new Conn();
-            $sql = "UPDATE funcionario 
-                    SET nome = ?, email = ?, cargo = ?,
-                    WHERE id = ?";
-            $executar = $this->conn->prepare($sql);
-            $executar->bindValue(1, mb_strtoupper($this->nome));
-            $executar->bindValue(2, mb_strtoupper($this->email));
-            $executar->bindValue(4, mb_strtoupper($this->cargo));
-            $executar->bindValue(4, $this->id); 
-            return $executar->execute() == 1 ? true :false;
-        } catch (PDOException $erro){
-            echo $erro->getMessage();
-        }
-    }
-
-    public function listarSemProcedure()
-    {
-        try {
-            $this->conn = new Conn();
-            $sql = "SELECT * FROM {$this->tabela} ORDER BY nome";
-            $executar = $this->conn->prepare($sql); 
-            return $executar->execute() == 1 ? true :false;
-        } catch (PDOException $erro){
-            echo $erro->getMessage();
-        }
-    }
-
-    public function consultarPorID()
-    {
-        try {
-            $this->conn = new Conn();
-            $sql = "SELECT * FROM {$this->tabela} WHERE id = ?";
-            $executar = $this->conn->prepare($sql);
-            $executar->bindValue(1, $this->id); 
-            return $executar->execute() == 1 ? true :false;
-        } catch (PDOException $erro){
-            echo $erro->getMessage();
-        }
+        $this->cargo = trim($cargo);
+        return $this;
     }
 
 }

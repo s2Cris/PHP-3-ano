@@ -20,11 +20,14 @@
                 <tbody>
                     
                     <?php
-                    include_once '../models/Fornecedor.php';
-                    $for = new Fornecedor();
-                    $dados = $for->listar(null);
+                    include_once '../controller/FornecedorController.php';
+                    $for = new FornecedorController();
+
+                    $dados = $for->listar();
+
                     foreach ($dados as $mostrar) {
-                    ?>
+                        ?>
+
                     <tr>
                         <td><?= $mostrar['id'] ?></td>
                         <td><?= $mostrar['nome'] ?></td>
@@ -38,6 +41,7 @@
                             </a>
                         </td>
                     </tr>
+
                     <?php
                     }
                     ?>

@@ -47,18 +47,17 @@
 <?php
     //verificar se o botão btnsalvar foi acionado
 if (filter_input(INPUT_POST, 'btnsalvar')) {
-    $nome = filter_input(INPUT_POST,'txtnome');
-    $email = filter_input(INPUT_POST,'txtemail');
-    $cargo = filter_input(INPUT_POST,'txtcargo');
 
-    include_once '../models/Funcionario.php' ;
-    $func = new Funcionario();
+    include_once '../controller/FuncionarioController.php' ;
+    $func = new FuncionarioController();
 
+    /*
     //enviando os dados do form aos atributos da classe
     $func->setID(NULL);
     $func->setNome($nome);
     $func->setEmail($email);
     $func->setCargo($cargo);
+    */
 
     //efetivar o insert into
     if($func->salvar()){
@@ -66,6 +65,8 @@ if (filter_input(INPUT_POST, 'btnsalvar')) {
             <div class="alert alert-primary mt-3" role="alert">
                 Funcionário - Cadastro efetuado com sucesso.
             </div>
+            <meta http-equiv="refresh"
+              content="0.2;URL=?p=funcionario">
         <?php
     } else {
         ?>

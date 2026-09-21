@@ -20,15 +20,20 @@
                 <tbody>
                     
                     <?php
-                    include_once '../models/Categoria.php';
-                    $cat = new Categoria();
-                    $dados = $cat->listar(null);
+                    require_once '../controller/CategoriaController.php';
+                    $cat = new CategoriaController();
+
+                    // Sem procedure
+                    $dados = $cat->listar();
+                    
                     foreach ($dados as $mostrar) {
-                    ?>
+                        ?>      
+
                     <tr>
                         <td><?= $mostrar['id'] ?></td>
                         <td><?= $mostrar['nome'] ?></td>
                         <td><?= $mostrar['informacoes'] ?></td>
+
                         <td>
                             <a href="?p=excluir/categoria&id=<?= $mostrar['id'] ?>"
                             class="btn btn-danger"
@@ -38,6 +43,7 @@
                             </a>
                         </td>
                     </tr>
+                    
                     <?php
                     }
                     ?>

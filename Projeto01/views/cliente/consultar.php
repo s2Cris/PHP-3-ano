@@ -20,12 +20,15 @@
                 <tbody>
 
                     <?php
-                    include_once '../models/Cliente.php';
-                    $cli = new Cliente();
-                    $dados = $cli->listar(null);
+                    include_once '../controller/ClienteController.php';
+                    $cli = new ClienteController();
+                    
+                    $dados = $cli->listar();
+
                     foreach ($dados as $mostrar) {
-                    ?>
+                        ?>
                     <tr>
+
                         <td><?= $mostrar['id'] ?></td>
                         <td><?= $mostrar['nome'] ?></td>
                         <td><?= $mostrar['email'] ?></td>
@@ -38,8 +41,9 @@
                             </a>
                         </td>
                     </tr>
+
                     <?php
-                    }
+                    } 
                     ?>
 
                 </tbody>

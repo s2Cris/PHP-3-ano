@@ -21,11 +21,14 @@
                 <tbody>
                     
                     <?php
-                    include_once '../models/Funcionario.php';
-                    $func = new Funcionario();
-                    $dados = $func->listar(null);
+                    include_once '../controller/FuncionarioController.php';
+                    $func = new FuncionarioController();
+
+                    $dados = $func->listar();
+
                     foreach ($dados as $mostrar) {
-                    ?>
+                        ?>
+
                     <tr>
                         <td><?= $mostrar['id'] ?></td>
                         <td><?= $mostrar['nome'] ?></td>
@@ -40,6 +43,7 @@
                             </a>
                         </td>
                     </tr>
+
                     <?php
                     }
                     ?>
