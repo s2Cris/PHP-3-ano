@@ -44,6 +44,7 @@ if (filter_input(INPUT_POST, 'btnsalvar')) {
     include_once '../models/Categoria_copy.php' ;
     $cat = new Categoria();
 
+    /*
     //enviando os dados do form aos atributos da classe
     $cat->setID(NULL);
     $cat->setNome($nome);
@@ -58,6 +59,8 @@ if (filter_input(INPUT_POST, 'btnsalvar')) {
             </div>
             <meta http-equiv="refresh"
               content="0.2;URL=?p=categorias">
+            <meta http-equiv="refresh"
+              content="0.2;URL=?p=categorias">
         <?php
     } else {
         ?>
@@ -67,4 +70,5 @@ if (filter_input(INPUT_POST, 'btnsalvar')) {
     <?php
     }
 }
+?>
 ?>

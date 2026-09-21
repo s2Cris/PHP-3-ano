@@ -34,6 +34,7 @@
                         <td><?= $mostrar['nome'] ?></td>
                         <td><?= $mostrar['informacoes'] ?></td>
 
+
                         <td>
                             <a href="?p=excluir/categoria&id=<?= $mostrar['id'] ?>"
                             class="btn btn-danger"
@@ -45,7 +46,7 @@
                     </tr>
                     
                     <?php
-                    }
+                        }
                     ?>
 
                 </tbody>

@@ -67,6 +67,8 @@ if (filter_input(INPUT_POST, 'btnsalvar')) {
             </div>
             <meta http-equiv="refresh"
               content="0.2;URL=?p=funcionario">
+            <meta http-equiv="refresh"
+              content="0.2;URL=?p=funcionario">
         <?php
     } else {
         ?>
