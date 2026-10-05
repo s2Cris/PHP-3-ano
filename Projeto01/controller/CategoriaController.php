@@ -18,17 +18,35 @@ class CategoriaController
         $this->dao = new CategoriaDAO();
     }
 
+    public function setId(int $id): void
+    {
+        $this->categoria->setId($id);
+    }
+    
     public function listar(): array
     {
         return $this->dao->listar();
     }
 
+    public function buscar(int $id): ?Categoria
+    {
+        return $this->dao->consultarPorID($id);
+    }
+
+    public function excluir(): bool
+    {
+        return $this->dao->excluir($this->categoria->getId());
+    }
+
     public function salvar(): bool
     {
-        $this->categoria->setNome(filter_input(INPUT_POST, 'txtnome'));
-        $this->categoria->setInformacoes(filter_input(INPUT_POST, 'txtinformacoes'));
+        $id = filter_input(INPUT_POST, 'id', FILTER_VALIDATE_INT);
+        if ($id) {
+            $this->categoria->setId($id);
+        }
+        $this->categoria->setNome((string) filter_input(INPUT_POST, 'txtnome'));
+        $this->categoria->setInformacoes((string) filter_input(INPUT_POST, 'txtinformacoes'));
         return $this->dao->salvar($this->categoria);
-        
     }
 
     }

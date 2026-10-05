@@ -23,7 +23,6 @@
                     <?php
                     include_once '../controller/FuncionarioController.php';
                     $func = new FuncionarioController();
-
                     $dados = $func->listar();
 
                     foreach ($dados as $mostrar) {
@@ -35,6 +34,11 @@
                         <td><?= $mostrar['email'] ?></td>
                         <td><?= $mostrar['cargo'] ?></td>
                         <td>
+                            <a href="?p=editar/funcionario&id=<?= $mostrar['id'] ?>" 
+                            class="btn btn-warning" 
+                            title="Editar">
+                                <i class="bi bi-pencil-square"></i>
+                            </a>
                             <a href="?p=excluir/funcionario&id=<?= $mostrar['id'] ?>"
                             class="btn btn-danger"
                             title="Excluir"
@@ -45,7 +49,7 @@
                     </tr>
 
                     <?php
-                        }
+                    }
                     ?>
 
                 </tbody>

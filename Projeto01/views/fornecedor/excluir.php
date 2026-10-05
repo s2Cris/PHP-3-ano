@@ -2,8 +2,8 @@
     $id = filter_input(INPUT_GET, 'id');
 
     if ($id) {
-        include_once '../models/Fornecedor_copy.php';
-        $forn = new Fornecedor();
+        include_once '../controller/FornecedorController.php';
+        $forn = new FornecedorController();
         $forn->setId($id);
 
         if ($forn->excluir()) {
@@ -15,4 +15,4 @@
         }
     }
     ?>
-    <meta http-equiv="refresh" CONTENT="1;URL=?p=categorias">
+    <meta http-equiv="refresh" CONTENT="1;URL=?p=fornecedor">

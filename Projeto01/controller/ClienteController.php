@@ -18,17 +18,36 @@ class ClienteController
         $this->dao = new ClienteDAO();
     }
 
+    public function setId(int $id): void
+    {
+        $this->cliente->setId($id);
+    }
+
     public function listar(): array
     {
         return $this->dao->listar();
     }
 
+    public function buscar(int $id): ?Cliente
+    {
+        return $this->dao->consultarPorID($id);
+    }
+
+    public function excluir(): bool
+    {
+        return $this->dao->excluir($this->cliente->getId());
+    }
+
     public function salvar(): bool
     {
-        $this->cliente->setNome(filter_input(INPUT_POST, 'txtnome'));
-        $this->cliente->setEmail(filter_input(INPUT_POST, 'txtemail'));
+        $id = filter_input(INPUT_POST, 'id', FILTER_VALIDATE_INT);
+        if ($id) {
+            $this->cliente->setId($id);
+        }
+        $this->cliente->setNome((string) filter_input(INPUT_POST, 'txtnome'));
+        $this->cliente->setEmail((string) filter_input(INPUT_POST, 'txtemail'));
+        $this->cliente->setTelefone((string) filter_input(INPUT_POST, 'txttelefone'));
         return $this->dao->salvar($this->cliente);
-        
     }
 
     }

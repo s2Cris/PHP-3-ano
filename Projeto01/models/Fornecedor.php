@@ -7,8 +7,9 @@ class Fornecedor
 {
     //a interrogação indica que pode ser null
     private ?int $id = null;
-    private string $nome = "";
-    private string $cidade = "";
+    private string $razaoSocial = "";
+    private string $email = "";
+    private string $telefone = "";
 
     public function getId(): ?int
     {
@@ -21,25 +22,36 @@ class Fornecedor
         return $this;
     }
 
-    public function getNome(): string
+    public function getRazaoSocial(): string
     {
-        return $this->nome;
+        return $this->razaoSocial;
     }
 
-    public function setNome(string $nome): self
+    public function setRazaoSocial(string $razaoSocial): self
     {
-        $this->nome = trim($nome);
+        $this->razaoSocial = trim($razaoSocial);
         return $this;
     }
 
-    public function getCidade(): string
+    public function getEmail(): string
     {
-        return $this->cidade;
+        return $this->email;
     }
 
-    public function setCidade(string $cidade): self
+    public function setEmail(string $email): self
     {
-        $this->cidade = trim($cidade);
+        $this->email = trim($email);
+        return $this;
+    }
+
+    public function getTelefone(): string
+    {
+        return $this->telefone;
+    }
+
+    public function setTelefone(string $telefone): self
+    {
+        $this->telefone = trim($telefone);
         return $this;
     }
 

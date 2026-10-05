@@ -2,8 +2,8 @@
     $id = filter_input(INPUT_GET, 'id');
 
     if ($id) {
-        include_once '../models/Funcionario_copy.php';
-        $func = new Funcionario();
+        include_once '../controller/FuncionarioController.php';
+        $func = new FuncionarioController();
         $func->setId($id);
 
         if ($func->excluir()) {
@@ -15,4 +15,4 @@
         }
     }
     ?>
-    <meta http-equiv="refresh" CONTENT="1;URL=?p=categorias">
+    <meta http-equiv="refresh" CONTENT="1;URL=?p=funcionario">

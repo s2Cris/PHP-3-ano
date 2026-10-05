@@ -20,7 +20,7 @@
                 <tbody>
                     
                     <?php
-                    require_once '../controller/CategoriaController.php';
+                    include_once '../controller/CategoriaController.php';
                     $cat = new CategoriaController();
 
                     // Sem procedure
@@ -34,19 +34,20 @@
                         <td><?= $mostrar['nome'] ?></td>
                         <td><?= $mostrar['informacoes'] ?></td>
 
-
                         <td>
-                            <a href="?p=excluir/categoria&id=<?= $mostrar['id'] ?>"
-                            class="btn btn-danger"
-                            title="Excluir"
-                            onclick="return confirm('Tem certeza que deseja excluir?')">
+                            <a href="?p=editar/categoria&id=<?= $mostrar['id'] ?>" class="btn btn-warning" title="Editar">
+                                <i class="bi bi-pencil-square"></i>
+                            </a>
+                            <a href="?p=excluir/categoria&id=<?= $mostrar['id'] ?>" class="btn btn-danger" title="Excluir"
+                               onclick="return confirm('Tem certeza que deseja excluir?')">
                                 <i class="bi bi-x-circle"></i>
                             </a>
                         </td>
+                        
                     </tr>
                     
                     <?php
-                        }
+                    }
                     ?>
 
                 </tbody>

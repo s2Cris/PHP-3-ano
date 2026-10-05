@@ -18,18 +18,36 @@ class FuncionarioController
         $this->dao = new FuncionarioDAO();
     }
 
+    public function setId(int $id): void
+    {
+        $this->funcionario->setId($id);
+    }
+
     public function listar(): array
     {
         return $this->dao->listar();
     }
 
+    public function buscar(int $id): ?Funcionario
+    {
+        return $this->dao->consultarPorID($id);
+    }
+
+    public function excluir(): bool
+    {
+        return $this->dao->excluir($this->funcionario->getId());
+    }
+
     public function salvar(): bool
     {
-        $this->funcionario->setNome(filter_input(INPUT_POST, 'txtnome'));
-        $this->funcionario->setEmail(filter_input(INPUT_POST, 'txtemail'));
-        $this->funcionario->setCargo(filter_input(INPUT_POST, 'txtcargo'));
+        $id = filter_input(INPUT_POST, 'id', FILTER_VALIDATE_INT);
+        if ($id) {
+            $this->funcionario->setId($id);
+        }
+        $this->funcionario->setNome((string) filter_input(INPUT_POST, 'txtnome'));
+        $this->funcionario->setEmail((string) filter_input(INPUT_POST, 'txtemail'));
+        $this->funcionario->setCargo((string) filter_input(INPUT_POST, 'txtcargo'));
         return $this->dao->salvar($this->funcionario);
-        
     }
 
     }

@@ -18,17 +18,36 @@ class FornecedorController
         $this->dao = new FornecedorDAO();
     }
 
+    public function setId(int $id): void
+    {
+        $this->fornecedor->setId($id);
+    }
+
     public function listar(): array
     {
         return $this->dao->listar();
     }
 
+    public function buscar(int $id): ?Fornecedor
+    {
+        return $this->dao->consultarPorID($id);
+    }
+
+    public function excluir(): bool
+    {
+        return $this->dao->excluir($this->fornecedor->getId());
+    }
+
     public function salvar(): bool
     {
-        $this->fornecedor->setNome(filter_input(INPUT_POST, 'txtnome'));
-        $this->fornecedor->setCidade(filter_input(INPUT_POST, 'txtcidade'));
+        $id = filter_input(INPUT_POST, 'id', FILTER_VALIDATE_INT);
+        if ($id) {
+            $this->fornecedor->setId($id);
+        }
+        $this->fornecedor->setRazaoSocial((string) filter_input(INPUT_POST, 'txtrazaosocial'));
+        $this->fornecedor->setEmail((string) filter_input(INPUT_POST, 'txtemail'));
+        $this->fornecedor->setTelefone((string) filter_input(INPUT_POST, 'txttelefone'));
         return $this->dao->salvar($this->fornecedor);
-        
     }
 
     }

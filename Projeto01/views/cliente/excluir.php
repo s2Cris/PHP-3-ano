@@ -2,8 +2,8 @@
     $id = filter_input(INPUT_GET, 'id');
 
     if ($id) {
-        include_once '../models/Cliente_copy.php';
-        $cli = new Cliente();
+        include_once '../controller/ClienteController.php';
+        $cli = new ClienteController();
         $cli->setId($id);
 
         if ($cli->excluir()) {
@@ -15,4 +15,4 @@
         }
     }
     ?>
-    <meta http-equiv="refresh" CONTENT="1;URL=?p=categorias">
+    <meta http-equiv="refresh" CONTENT="1;URL=?p=cliente">

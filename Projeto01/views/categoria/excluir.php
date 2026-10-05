@@ -2,8 +2,8 @@
     $id = filter_input(INPUT_GET, 'id');
 
     if ($id) {
-        include_once '../models/Categoria_copy.php';
-        $cat = new Categoria();
+        include_once '../controller/CategoriaController.php';
+        $cat = new CategoriaController();
         $cat->setId($id);
 
         if ($cat->excluir()) {

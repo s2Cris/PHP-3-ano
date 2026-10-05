@@ -9,6 +9,7 @@ class Cliente
     private ?int $id = null;
     private string $nome = "";
     private string $email = "";
+    private string $telefone = "";
 
     public function getId(): ?int
     {
@@ -40,6 +41,17 @@ class Cliente
     public function setEmail(string $email): self
     {
         $this->email = trim($email);
+        return $this;
+    }
+
+    public function getTelefone(): string
+    {
+        return $this->telefone;
+    }
+
+    public function setTelefone(string $telefone): self
+    {
+        $this->telefone = trim($telefone);
         return $this;
     }
 

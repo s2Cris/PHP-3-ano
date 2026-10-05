@@ -32,7 +32,13 @@
                         <td><?= $mostrar['id'] ?></td>
                         <td><?= $mostrar['nome'] ?></td>
                         <td><?= $mostrar['email'] ?></td>
+                        <td><?= $mostrar['telefone'] ?></td>
                         <td>
+                            <a href="?p=editar/cliente&id=<?= $mostrar['id'] ?>" 
+                            class="btn btn-warning" 
+                            title="Editar">
+                                <i class="bi bi-pencil-square"></i>
+                            </a>
                             <a href="?p=excluir/cliente&id=<?= $mostrar['id'] ?>"
                             class="btn btn-danger"
                             title="Excluir"

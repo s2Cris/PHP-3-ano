@@ -22,7 +22,6 @@
                     <?php
                     include_once '../controller/FornecedorController.php';
                     $for = new FornecedorController();
-
                     $dados = $for->listar();
 
                     foreach ($dados as $mostrar) {
@@ -30,9 +29,15 @@
 
                     <tr>
                         <td><?= $mostrar['id'] ?></td>
-                        <td><?= $mostrar['nome'] ?></td>
-                        <td><?= $mostrar['cidade'] ?></td>
+                        <td><?= $mostrar['razao_social'] ?></td>
+                        <td><?= $mostrar['email'] ?></td>
+                        <td><?= $mostrar['telefone'] ?></td>
                         <td>
+                            <a href="?p=editar/fornecedor&id=<?= $mostrar['id'] ?>" 
+                            class="btn btn-warning" 
+                            title="Editar">
+                                <i class="bi bi-pencil-square"></i>
+                            </a>
                             <a href="?p=excluir/fornecedor&id=<?= $mostrar['id'] ?>"
                             class="btn btn-danger"
                             title="Excluir"
@@ -43,7 +48,7 @@
                     </tr>
 
                     <?php
-                        }
+                    }
                     ?>
 
                 </tbody>
