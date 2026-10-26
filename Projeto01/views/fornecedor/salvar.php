@@ -27,17 +27,24 @@ $editando = $registro !== null;
         <?php endif; ?>
 
         <div class="form-group row">
-            <label for="txtnome" class="col-sm-2 col-form-label">Nome</label>
+            <label for="txtrazaosocial" class="col-sm-2 col-form-label">Razão Social</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="txtnome" name="txtnome" placeholder="Nome"
-                       value="<?= $editando ? htmlspecialchars($registro->getNome()) : '' ?>">
+                <input type="text" class="form-control" id="txtrazaosocial" name="txtrazaosocial" placeholder="Razão Social"
+                       value="<?= $editando ? htmlspecialchars($registro->getRazaoSocial()) : '' ?>">
             </div>
         </div>
         <div class="form-group row">
-            <label for="txtcidade" class="col-sm-2 col-form-label">Cidade</label>
+            <label for="txtemail" class="col-sm-2 col-form-label">Email</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="txtcidade" name="txtcidade" placeholder="Cidade"
-                       value="<?= $editando ? htmlspecialchars($registro->getCidade()) : '' ?>">
+                <input type="text" class="form-control" id="txtemail" name="txtemail" placeholder="Email"
+                       value="<?= $editando ? htmlspecialchars($registro->getEmail()) : '' ?>">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="txttelefone" class="col-sm-2 col-form-label">Telefone</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="txttelefone" name="txttelefone" placeholder="Telefone"
+                       value="<?= $editando ? htmlspecialchars($registro->getTelefone()) : '' ?>">
             </div>
         </div>
 

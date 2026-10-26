@@ -41,6 +41,13 @@ $editando = $registro !== null;
                        value="<?= $editando ? htmlspecialchars($registro->getEmail()) : '' ?>">
             </div>
         </div>
+        <div class="form-group row">
+            <label for="txtemail" class="col-sm-2 col-form-label">Telefone</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="txttelefone" name="txttelefone" placeholder="Telefone"
+                       value="<?= $editando ? htmlspecialchars($registro->getTelefone()) : '' ?>">
+            </div>
+        </div>
 
         <div class="form-group row">
             <div class="col-sm-10">

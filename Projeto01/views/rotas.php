@@ -12,11 +12,13 @@
         'add/cliente' => 'cliente/salvar.php',
         'excluir/cliente' => 'cliente/excluir.php',
         'editar/cliente' => 'cliente/salvar.php',
+        'pesquisar/cliente' => 'cliente/consultar.php',
 
         'fornecedor' => 'fornecedor/consultar.php',
         'add/fornecedor' => 'fornecedor/salvar.php',
         'excluir/fornecedor' => 'fornecedor/excluir.php',
         'editar/fornecedor' => 'fornecedor/salvar.php',
+        'pesquisar/fornecedor' => 'fornecedor/consultar.php',
         
         'funcionario' => 'funcionario/consultar.php',
         'add/funcionario' => 'funcionario/salvar.php',

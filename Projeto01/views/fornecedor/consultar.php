@@ -12,8 +12,9 @@
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Nome</th>
-                        <th>Cidade</th>
+                        <th>Razão Social</th>
+                        <th>Email</th>
+                        <th>Telefone</th>
                         <th>Ações</th>
                     </tr>
                 </thead>

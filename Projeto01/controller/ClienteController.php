@@ -37,7 +37,7 @@ class ClienteController
     {
         return $this->dao->excluir($this->cliente->getId());
     }
-
+    
     public function salvar(): bool
     {
         $id = filter_input(INPUT_POST, 'id', FILTER_VALIDATE_INT);
@@ -50,4 +50,11 @@ class ClienteController
         return $this->dao->salvar($this->cliente);
     }
 
+    public function pesquisar(): array
+{
+    $termo = trim($_GET['busca'] ?? '');
+
+    return $termo === '' ? $this->dao->listar() : $this->dao->pesquisarPorNome($termo);
+}
+    
     }

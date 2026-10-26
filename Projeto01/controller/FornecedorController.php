@@ -49,5 +49,12 @@ class FornecedorController
         $this->fornecedor->setTelefone((string) filter_input(INPUT_POST, 'txttelefone'));
         return $this->dao->salvar($this->fornecedor);
     }
+    
+    public function pesquisar(): array
+{
+    $termo = trim($_GET['busca'] ?? '');
+
+    return $termo === '' ? $this->dao->listar() : $this->dao->pesquisarPorRazaoSocial($termo);
+}
 
     }

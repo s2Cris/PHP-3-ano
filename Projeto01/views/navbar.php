@@ -16,8 +16,18 @@
                 </a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="?p=pesquisar/cliente">
+                    <i class="bi bi-search"></i> Pesquisar Clientes
+                </a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="?p=fornecedor">
                     <i class="bi bi-list-task"></i> Consultar Fornecedores
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="?p=pesquisar/fornecedor">
+                    <i class="bi bi-search"></i> Pesquisar Fornecedores
                 </a>
             </li>
             <li class="nav-item">

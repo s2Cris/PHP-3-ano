@@ -30,7 +30,7 @@ class FornecedorDAO
 
     public function listar(): array
     {
-        $sql = "SELECT * FROM {$this->tabela} ORDER BY nome";
+        $sql = "SELECT * FROM {$this->tabela} ORDER BY razao_social";
         $executar = $this->conn->query($sql);
         return $executar->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -49,8 +49,9 @@ class FornecedorDAO
 
         $fornecedor = new Fornecedor();
         $fornecedor->setId($dados["id"]);
-        $fornecedor->setNome($dados["nome"]);
-        $fornecedor->setCidade($dados["cidade"]);
+        $fornecedor->setRazaoSocial($dados["razao_social"]);
+        $fornecedor->setEmail($dados["email"]);
+        $fornecedor->setTelefone($dados["telefone"]);
 
         return $fornecedor;
 
@@ -61,28 +62,46 @@ class FornecedorDAO
         if ($fornecedor->getId() == null) {
 
             $sql = "INSERT INTO fornecedor
-                    (nome,cidade)
+                    (razao_social,email,telefone)
                     VALUES
-                    (?,?)";
+                    (?,?,?)";
 
             $stmt = $this->conn->prepare($sql);
 
-            $stmt->bindValue(1, $this->texto($fornecedor->getNome()));
-            $stmt->bindValue(2, $this->texto($fornecedor->getCidade()));
+            $stmt->bindValue(1, $this->texto($fornecedor->getRazaoSocial()));
+            $stmt->bindValue(2, $this->texto($fornecedor->getEmail()));
+            $stmt->bindValue(3, $this->texto($fornecedor->getTelefone()));
         } else {
 
             $sql = "UPDATE fornecedor
-                       SET nome=?,
-                           cidade=?
+                       SET razao_social=?,
+                           email=?,
+                           telefone=?
                      WHERE id=?";
 
             $stmt = $this->conn->prepare($sql);
 
-            $stmt->bindValue(1, $this->texto($fornecedor->getNome()));
-            $stmt->bindValue(2, $this->texto($fornecedor->getCidade()));
-            $stmt->bindValue(3, $fornecedor->getId());
+            $stmt->bindValue(1, $this->texto($fornecedor->getRazaoSocial()));
+            $stmt->bindValue(2, $this->texto($fornecedor->getEmail()));
+            $stmt->bindValue(3, $this->texto($fornecedor->getTelefone()));
+            $stmt->bindValue(4, $fornecedor->getId());
         }
 
         return $stmt->execute();
     }
+
+    public function pesquisarPorRazaoSocial(string $termo): array
+{
+    $sql = "SELECT id, razao_social, email
+            FROM {$this->tabela}
+            WHERE razao_social LIKE ?
+            ORDER BY razao_social";
+
+    $stmt = $this->conn->prepare($sql);
+    $stmt->bindValue(1, '%' . $termo . '%');
+    $stmt->execute();
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
 }
